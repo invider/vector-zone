@@ -1,5 +1,7 @@
 function setup() {
 
+    lab.background = '#000000'
+
     env.score = [
         0,
         0,
@@ -13,5 +15,11 @@ function setup() {
     trap('respawn', {
         team: 2,
         player: 2,
+    })
+
+    lab.spawn(dna.hud.Transition, {
+        fadein: 0,
+        keep: .5,
+        fadeout: 2,
     })
 }
