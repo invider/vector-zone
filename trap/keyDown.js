@@ -10,5 +10,9 @@ function keyDown(e) {
         case 'KeyW': env.control.player2.thrust = true; break;
         case 'Space':
         case 'ShiftLeft': env.control.player2.shoot= true; break;
+
+        case 'Escape':
+            mod.menu.trap.show()
+            break
     }
 }
