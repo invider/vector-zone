@@ -40,10 +40,12 @@ Missile.prototype.draw = function() {
     case 1: c = hsl(.7, .7, .6); break
     case 2: c = hsl(.1, .7, .6); break;
     }
+    /*
     stroke(c)
     lineWidth(3)
-
     line(0, -this.r, 0, this.r)
+    */
+    neon(0, -this.r, 0, this.r, c, c)
 
     restore()
 }

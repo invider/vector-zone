@@ -157,9 +157,15 @@ function ship(st) {
         case 2: c = hsl(.1, .7, .6); break;
         }
 
+        /*
         stroke(c)
         lineWidth(3)
         polygon(0, -R, R*0.7, R, 0, R*0.7, -R*0.7, R)
+        */
+        neon( 0,    -R,     .7*R,   R,      c, c)
+        neon( .7*R, R,      0,      .7*R,   c, c)
+        neon( 0,    .7*R,   -.7*R,  R,      c, c)
+        neon( -.7*R,R,      0,      -R,     c, c)
 
         if (this.status) {
             fill(rgb(1, 1, 1))
