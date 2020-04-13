@@ -1,17 +1,19 @@
 function neon(x1, y1, x2, y2, lcolor, ncolor) {
     ctx.lineCap = 'round'
 
-    alpha(.05); lineWidth(12); stroke(ncolor);
-    line(x1, y1, x2, y2)
+    let glow = .05
+    let width = 12
+    let steps = 5
 
-    alpha(.08); lineWidth(10); stroke(ncolor);
-    line(x1, y1, x2, y2)
+    for (let i = 0; i < steps; i++) {
+        alpha(glow);
+        lineWidth(width);
+        stroke(ncolor);
+        line(x1, y1, x2, y2)
 
-    alpha(.12); lineWidth(8); stroke(ncolor);
-    line(x1, y1, x2, y2)
-
-    alpha(.15); lineWidth(6); stroke(ncolor);
-    line(x1, y1, x2, y2)
+        glow += .02
+        width -= 1.5
+    }
 
     lineWidth(3)
     stroke(lcolor)

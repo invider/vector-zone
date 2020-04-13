@@ -1,26 +1,33 @@
 function init() {
-    this.items = [
-        {
-            name: 'new game',
-            action: () => _.trap('hide'),
-        },
-        {
-            name: 'options',
-        },
-        {
-            name: 'instructions',
-        },
-        {
-            name: 'credits',
-        },
-        {
-            name: 'continue',
-            action: () => _.trap('hide'),
-        },
-    ]
-    this.selected = 0
+    this.items = []
+    this.stack = []
+    this.selected = -1
     this.color = '#ffffff'
     this.selectedColor = '#ffff00'
+}
+
+function setItems(items) {
+    this.items = items
+    this.selected = 0
+
+    this.items.forEach(item => {
+        if (item.sync) item.sync()
+    })
+}
+
+function enter(items) {
+    this.stack.push({
+        items: this.items,
+        selected: this.selected,
+    })
+    this.setItems(items)
+}
+
+function back() {
+    if (this.stack.length === 0) return
+    const { items, selected } = this.stack.pop()
+    this.items = items
+    this.selected = selected
 }
 
 function draw() {
@@ -29,6 +36,7 @@ function draw() {
 
     alignCenter()
     baseMiddle()
+
     font('48px moon')
 
     for (let i = 0; i < this.items.length; i++) {
@@ -37,11 +45,26 @@ function draw() {
         if (i === this.selected) fill(this.selectedColor)
         else fill(this.color)
 
-        if (i === this.selected) text('> ' + item.name + ' <', x, y)
+        if (i === this.selected) text('= ' + item.name + ' =', x
+            , y)
         else text(item.name, x, y)
 
         y += textHeight()
     }
+}
+
+function left() {
+    const item = this.items[this.selected]
+    if (!item) return
+
+    if (item.left) item.left(this)
+}
+
+function right() {
+    const item = this.items[this.selected]
+    if (!item) return
+
+    if (item.right) item.right(this)
 }
 
 function up() {
@@ -58,6 +81,6 @@ function activate() {
     const item = this.items[this.selected]
     if (!item) return
     log(' => ' + item.name)
-    if (item.action) item.action()
+    if (item.action) item.action(this)
 }
 
