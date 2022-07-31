@@ -1,6 +1,6 @@
 
 function draw() {
-    font('32px zekton')
+    font('32px moon')
     baseTop()
 
     alignLeft()
