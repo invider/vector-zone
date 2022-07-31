@@ -9,6 +9,6 @@ function draw() {
 
     alignRight()
     fill(hsl(.1, .7, .6))
-    text('' + env.score[1], width() - 20, 20)
+    text('' + env.score[1], ctx.width - 20, 20)
 }
 
