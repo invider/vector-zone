@@ -1,6 +1,6 @@
 
 function draw() {
-    font('32px moon')
+    font(env.style.font.stat.head)
     baseTop()
 
     alignLeft()

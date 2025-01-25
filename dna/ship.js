@@ -169,7 +169,7 @@ function ship(st) {
 
         if (this.status) {
             fill(rgb(1, 1, 1))
-            font('14px zekton')
+            font(env.style.main.head)
             text(this.status, 0, 0)
         }
 
